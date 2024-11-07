@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Console Sidebar</title>
+  <script src="console-sidebar.js" defer></script>
+</head>
+<body>
+  <log-panel></log-panel>
+
+  <div style="display: flex; justify-content: right;">
+    <button onclick="logMe()">CLlick Me</button>
+  </div>
+  <script>
+
+    
+    // Sample console.log calls to test the sidebar
+    console.log("This is a test message");
+    console.log("Another log message");
+
+    let count = 0;
+    function logMe() {
+        console.log("Log #" + count);
+        count++;
+    }
+  </script>
+</body>
+</html>
