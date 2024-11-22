@@ -43,7 +43,6 @@ Thumbs.db
 bower_components/
 
 # Compiled JavaScript files
-*.js
 *.map
 
 # Typescript generated files
