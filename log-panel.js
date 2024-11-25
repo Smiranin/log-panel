@@ -4,114 +4,7 @@ class LogPanel extends HTMLElement {
 
     constructor() {
 
-        super();// Define a custom HTML element named 'log-panel'
-        class LogPanel extends HTMLElement {
-            isVisible = false; // Tracks visibility of the sidebar
-
-            constructor() {
-                super();
-
-                // Attach a shadow DOM to the element
-                this.attachShadow({ mode: 'open' });
-
-                // Create main container for the sidebar
-                this.container = document.createElement('div');
-                this.container.style.position = 'relative';
-                this.container.style.zIndex = '1000';
-                this.container.style.position = 'fixed';
-                this.container.style.top = '0';
-                this.container.style.left = '0';
-                this.container.style.transform = 'translate(-340px)';
-                this.container.style.transition = 'all 0.3s';
-
-                // Create sidebar layout and controls
-                this.sidebar = document.createElement('div');
-                this.toggleButton = document.createElement('button'); // Button to toggle the sidebar
-                this.clearButton = document.createElement('button'); // Button to clear messages
-                this.messagesContainer = document.createElement('pre'); // Container for log messages
-
-                // Append elements to the container
-                this.container.append(this.sidebar, this.toggleButton, this.clearButton);
-                this.sidebar.appendChild(this.messagesContainer);
-
-                // Setup toggle button styles and event
-                this.toggleButton.textContent = '☰';
-                this.toggleButton.style.position = 'absolute';
-                this.toggleButton.style.top = '20px';
-                this.toggleButton.style.right = '-40px';
-                this.toggleButton.style.cursor = 'pointer';
-                this.toggleButton.addEventListener('click', () => this.toggleSidebar());
-
-                // Setup clear button styles and event
-                this.clearButton.textContent = 'x';
-                this.clearButton.style.position = 'absolute';
-                this.clearButton.style.top = '20px';
-                this.clearButton.style.right = '20px';
-                this.clearButton.style.cursor = 'pointer';
-                this.clearButton.addEventListener('click', () => this.clearMessages());
-
-                // Sidebar styles
-                this.sidebar.style.width = '300px';
-                this.sidebar.style.height = '100vh';
-                this.sidebar.style.backgroundColor = '#333';
-                this.sidebar.style.color = 'white';
-                this.sidebar.style.transition = 'left 0.3s ease';
-                this.sidebar.style.padding = '20px';
-                this.sidebar.style.overflowY = 'auto';
-
-                // Styles for the messages container
-                this.messagesContainer.style.marginTop = '40px';
-                this.messagesContainer.style.maxHeight = '90%';
-                this.messagesContainer.style.overflowY = 'auto';
-
-                // Append elements to the shadow DOM
-                this.shadowRoot.append(this.container);
-
-                // Intercept and enhance console.log functionality
-                this.originalConsoleLog = console.log;
-                console.log = (...args) => {
-                    this.originalConsoleLog(...args); // Call the original console.log
-                    const validArgs = args.map(arg => typeof arg === "object" ? JSON.stringify(arg) : arg);
-                    this.addMessageToSidebar(validArgs); // Add the message to the sidebar
-                };
-
-                // Intercept and enhance console.error functionality
-                this.originalConsoleError = console.error;
-                console.error = (...args) => {
-                    this.originalConsoleError(...args); // Call the original console.error
-                    const validArgs = args.map(arg => typeof arg === "object" ? JSON.stringify(arg) : arg);
-                    this.addMessageToSidebar(validArgs, true); // Add the error message to the sidebar
-                };
-            }
-
-            // Toggle the visibility of the sidebar
-            toggleSidebar() {
-                this.container.style.transform = this.isVisible ? 'translateX(-340px)' : 'translateX(0)';
-                this.isVisible = !this.isVisible;
-            }
-
-            // Clear all messages from the sidebar
-            clearMessages() {
-                this.messagesContainer.innerHTML = '';
-            }
-
-            // Add a new message to the sidebar
-            addMessageToSidebar(message, isError = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.style.paddingBottom = '100px'; // Add spacing between messages
-
-                if (isError) {
-                    messageDiv.style.color = "red"; // Highlight error messages in red
-                }
-
-                messageDiv.textContent = message;
-                this.messagesContainer.appendChild(messageDiv);
-            }
-        }
-
-        // Register the custom element
-        customElements.define('log-panel', LogPanel);
-
+        super();
 
         // Attach a shadow DOM to the element
         this.attachShadow({ mode: 'open' });
@@ -198,7 +91,7 @@ class LogPanel extends HTMLElement {
 
     addMessageToSidebar(message, isError = false) {
         const messageDiv = document.createElement('div');
-        messageDiv.style.paddingBottom = '100px';
+        messageDiv.style.paddingBottom = '10px';
 
         if (isError) {
             messageDiv.style.color = "red"
