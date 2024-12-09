@@ -17,7 +17,7 @@ A lightweight and customizable logging panel implemented as a Web Component. `Lo
 1. Include the script in your HTML file using the following tag:
 
 ```html
-   <script src="your-gh-page-path-to-the-file/log-panel.js"></script>
+   <script src="https://smiranin.github.io/log-panel/log-panel.js"></script>
    ```
    
 Add the `<log-panel>` component anywhere in your HTML:
